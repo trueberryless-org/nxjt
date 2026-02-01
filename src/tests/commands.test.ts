@@ -57,7 +57,7 @@ test('replaces query placeholders in redirect URLs', () => {
   expect(result.redirect).toContain(`q=repo%3Anpmx-dev%2Fnpmx.dev%20${queryText}`)
 })
 
-test('replaces __NPMX_QUERY__ in search fallback', () => {
+test('replaces __NXJT_QUERY__ in search fallback', () => {
   const input = 'random search'
   const result = parseCommandStr(input)
 
