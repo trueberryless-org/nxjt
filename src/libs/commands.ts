@@ -66,7 +66,7 @@ export function parseCommandStr(commandStr: string): Command {
   const fallbackSearchCommand: Command = makeCommand({
     type: 'search',
     query: documentationSearchQuery,
-    redirect: `${searchEngineUrl}__NPMX_QUERY__`,
+    redirect: `${searchEngineUrl}__NXJT_QUERY__`,
   })
 
   const match = sanitizedCommandStr.match(commandRegex)
@@ -98,7 +98,7 @@ function getCommandDefinitionFromKeyword(keyword: string): [CommandType, Command
 
 function makeCommand(command: Command): Command {
   if (command.redirect) {
-    command.redirect = command.redirect.replaceAll('__NPMX_QUERY__', command.query ?? '')
+    command.redirect = command.redirect.replaceAll('__NXJT_QUERY__', command.query ?? '')
   }
   return command
 }
