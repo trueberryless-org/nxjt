@@ -61,5 +61,5 @@ test('replaces __NPMX_QUERY__ in search fallback', () => {
   const input = 'random search'
   const result = parseCommandStr(input)
 
-  expect(result.redirect).toBe(`https://duckduckgo.com/?no_redirect=0&q=! site:https://npmx.dev ${input}`)
+  expect(result.redirect).toBe(`https://duckduckgo.com/?no_redirect=0&q=! site:https://docs.npmx.dev ${input}`)
 })
