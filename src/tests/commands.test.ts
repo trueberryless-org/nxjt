@@ -16,7 +16,7 @@ test('returns the search command for unknown commands', () => {
 
   expect(result).toMatchObject({
     type: 'search',
-    query: `site:https://npmx.dev ${query}`,
+    query: `site:https://docs.npmx.dev ${query}`,
   })
 })
 
@@ -46,7 +46,7 @@ test('returns the search command if a known keyword is used as a query', () => {
 
   expect(parseCommandStr(input)).toMatchObject({
     type: 'search',
-    query: `site:https://npmx.dev ${input}`,
+    query: `site:https://docs.npmx.dev ${input}`,
   })
 })
 
