@@ -12,13 +12,17 @@ export const onRequest = defineMiddleware((context, next) => {
   const command = parseCommandStr(query)
   if (command.type === 'invalid' || !command.redirect) return next()
 
-  // Use a fragment if no query exists to "seal" the URL from Netlify
-  const location = command.redirect.includes('?') ? command.redirect : `${command.redirect}#`
+  const destination = new URL(command.redirect)
+
+  // If no query exists, add a clean reference to stop Netlify passthrough
+  if (!destination.search) {
+    destination.searchParams.set('ref', 'nxjt')
+  }
 
   return new Response(null, {
     status: 302,
     headers: {
-      Location: location,
+      Location: destination.toString(),
     },
   })
 })
