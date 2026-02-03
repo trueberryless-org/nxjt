@@ -12,10 +12,12 @@ export const onRequest = defineMiddleware((context, next) => {
   const command = parseCommandStr(query)
   if (command.type === 'invalid' || !command.redirect) return next()
 
+  const destination = new URL(command.redirect)
+
   return new Response(null, {
     status: 302,
     headers: {
-      Location: command.redirect,
+      Location: destination.href,
     },
   })
 })
