@@ -12,12 +12,30 @@ export const onRequest = defineMiddleware((context, next) => {
   const command = parseCommandStr(query)
   if (command.type === 'invalid' || !command.redirect) return next()
 
-  const destination = new URL(command.redirect)
-
-  return new Response(null, {
+  const response = new Response(null, {
     status: 302,
     headers: {
-      Location: destination.href,
+      Location: command.redirect,
     },
   })
+
+  const location = response.headers.get('Location')
+  if (location && location.includes('?')) {
+    const [base, queryString] = location.split('?')
+    const redirectParams = new URLSearchParams(queryString)
+
+    let identical = true
+    for (const [key, value] of url.searchParams.entries()) {
+      if (redirectParams.get(key) !== value) {
+        identical = false
+        break
+      }
+    }
+
+    if (identical && base) {
+      response.headers.set('Location', base)
+    }
+  }
+
+  return response
 })
