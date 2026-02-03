@@ -12,30 +12,13 @@ export const onRequest = defineMiddleware((context, next) => {
   const command = parseCommandStr(query)
   if (command.type === 'invalid' || !command.redirect) return next()
 
-  const response = new Response(null, {
+  // Use a fragment if no query exists to "seal" the URL from Netlify
+  const location = command.redirect.includes('?') ? command.redirect : `${command.redirect}#`
+
+  return new Response(null, {
     status: 302,
     headers: {
-      Location: command.redirect,
+      Location: location,
     },
   })
-
-  const location = response.headers.get('Location')
-  if (location && location.includes('?')) {
-    const [base, queryString] = location.split('?')
-    const redirectParams = new URLSearchParams(queryString)
-
-    let identical = true
-    for (const [key, value] of url.searchParams.entries()) {
-      if (redirectParams.get(key) !== value) {
-        identical = false
-        break
-      }
-    }
-
-    if (identical && base) {
-      response.headers.set('Location', base)
-    }
-  }
-
-  return response
 })
