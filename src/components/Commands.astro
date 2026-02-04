@@ -1,5 +1,5 @@
 ---
-import { CommandDefinitions } from '../libs/commands'
+import { CommandDefinitions } from "../libs/commands";
 ---
 
 <nxjt-commands>
@@ -8,7 +8,10 @@ import { CommandDefinitions } from '../libs/commands'
     {
       Object.values(CommandDefinitions).map((command) => (
         <li>
-          <button aria-label={command.description} data-example={command.example}>
+          <button
+            aria-label={command.description}
+            data-example={command.example}
+          >
             <code aria-hidden="true">{command.keyword}</code>
           </button>
           <span aria-hidden="true">{command.description}</span>
@@ -17,8 +20,8 @@ import { CommandDefinitions } from '../libs/commands'
     }
   </ul>
   <p>
-    Using no command or an unknown command will search the provided text in the npmx documentation and open the most
-    relevant page.
+    Using no command or an unknown command will search the provided text in the
+    npmx documentation and open the most relevant page.
   </p>
 
   <style>
@@ -53,25 +56,27 @@ import { CommandDefinitions } from '../libs/commands'
 
   <script>
     customElements.define(
-      'nxjt-commands',
+      "nxjt-commands",
       class NXJTCommands extends HTMLElement {
-        #commandInput: HTMLInputElement | null = null
+        #commandInput: HTMLInputElement | null = null;
 
         constructor() {
-          super()
+          super();
 
-          this.#commandInput = document.querySelector<HTMLInputElement>('input#command-input')
+          this.#commandInput = document.querySelector<HTMLInputElement>(
+            "input#command-input"
+          );
 
-          for (const button of this.querySelectorAll('button')) {
-            button.addEventListener('click', () => {
-              if (this.#commandInput && button.dataset['example']) {
-                this.#commandInput.value = button.dataset['example']
-                this.#commandInput.focus()
+          for (const button of this.querySelectorAll("button")) {
+            button.addEventListener("click", () => {
+              if (this.#commandInput && button.dataset["example"]) {
+                this.#commandInput.value = button.dataset["example"];
+                this.#commandInput.focus();
               }
-            })
+            });
           }
         }
-      },
-    )
+      }
+    );
   </script>
 </nxjt-commands>
