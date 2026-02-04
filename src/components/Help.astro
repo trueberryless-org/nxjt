@@ -1,26 +1,48 @@
 <h2>How to use</h2>
 
-<p>This website is mostly for demonstration purposes and using one of the following methods is recommended:</p>
+<p>
+  This website is mostly for demonstration purposes and using one of the
+  following methods is recommended:
+</p>
 
 <nxjt-help>
   <div>
     <ul role="tablist">
       <li role="presentation">
-        <a role="tab" href="#tab-panel-chrome" id="tab-chrome" aria-selected="true">Chrome</a>
+        <a
+          role="tab"
+          href="#tab-panel-chrome"
+          id="tab-chrome"
+          aria-selected="true">Chrome</a
+        >
       </li>
       <li role="presentation">
-        <a role="tab" href="#tab-panel-firefox" id="tab-firefox" tabindex="-1">Firefox</a>
+        <a role="tab" href="#tab-panel-firefox" id="tab-firefox" tabindex="-1"
+          >Firefox</a
+        >
       </li>
       <li role="presentation">
-        <a role="tab" href="#tab-panel-alfred" id="tab-alfred" tabindex="-1">Alfred</a>
+        <a role="tab" href="#tab-panel-alfred" id="tab-alfred" tabindex="-1"
+          >Alfred</a
+        >
       </li>
     </ul>
   </div>
-  <section id="tab-panel-chrome" aria-labelledby="tab-chrome" role="tabpanel" tabindex="0">
+  <section
+    id="tab-panel-chrome"
+    aria-labelledby="tab-chrome"
+    role="tabpanel"
+    tabindex="0"
+  >
     <ol>
       <li>Open Chrome settings</li>
-      <li>Section <em>Search engine</em> → <em>Manage search engines and site search</em></li>
-      <li>In the <em>Site Search</em> section, <em>Add</em> a new search engine</li>
+      <li>
+        Section <em>Search engine</em> → <em
+          >Manage search engines and site search</em>
+      </li>
+      <li>
+        In the <em>Site Search</em> section, <em>Add</em> a new search engine
+      </li>
       <li>
         Fill the form with the following values:
         <table>
@@ -47,9 +69,18 @@
         </table>
       </li>
     </ol>
-    <p>Typing <code>nxjt [command]</code> in the address bar will now redirect you to the corresponding page.</p>
+    <p>
+      Typing <code>nxjt [command]</code> in the address bar will now redirect you
+      to the corresponding page.
+    </p>
   </section>
-  <section id="tab-panel-firefox" aria-labelledby="tab-firefox" role="tabpanel" tabindex="0" hidden>
+  <section
+    id="tab-panel-firefox"
+    aria-labelledby="tab-firefox"
+    role="tabpanel"
+    tabindex="0"
+    hidden
+  >
     <ol>
       <li>Right click on the search input above</li>
       <li>Select <em>Add a Keyword for this Search</em></li>
@@ -75,19 +106,33 @@
         </table>
       </li>
     </ol>
-    <p>Typing <code>nxjt [command]</code> in the address bar will now redirect you to the corresponding page.</p>
+    <p>
+      Typing <code>nxjt [command]</code> in the address bar will now redirect you
+      to the corresponding page.
+    </p>
   </section>
-  <section id="tab-panel-alfred" aria-labelledby="tab-alfred" role="tabpanel" tabindex="0" hidden>
+  <section
+    id="tab-panel-alfred"
+    aria-labelledby="tab-alfred"
+    role="tabpanel"
+    tabindex="0"
+    hidden
+  >
     <ol>
       <li>
         Open the following
-        <a href="alfred://customsearch/npmx%20Jump%20To/nxjt/utf8/nospace/https://nxjt.netlify.app/?q=%7Bquery%7D">
+        <a
+          href="alfred://customsearch/npmx%20Jump%20To/nxjt/utf8/nospace/https://nxjt.netlify.app/?q=%7Bquery%7D"
+        >
           link
         </a>
       </li>
       <li>Choose <em>Open Alfred 5.app</em></li>
     </ol>
-    <p>Typing <code>nxjt [command]</code> in Alfred will now redirect you to the corresponding page.</p>
+    <p>
+      Typing <code>nxjt [command]</code> in Alfred will now redirect you to the corresponding
+      page.
+    </p>
   </section>
 </nxjt-help>
 
@@ -105,14 +150,14 @@
     margin-bottom: -2px;
   }
 
-  [role='tablist'] {
+  [role="tablist"] {
     border-bottom: 2px solid var(--color-gray-800);
     display: flex;
     list-style: none;
     padding: 0;
   }
 
-  [role='tab'] {
+  [role="tab"] {
     border-bottom: 2px solid var(--color-gray-800);
     color: var(--color-gray-400);
     display: block;
@@ -121,13 +166,13 @@
     text-decoration: none;
   }
 
-  [role='tab'][aria-selected] {
+  [role="tab"][aria-selected] {
     border-color: var(--color-gray-300);
     color: var(--color-gray-300);
     font-weight: 600;
   }
 
-  [role='tab'][aria-selected]:focus-visible {
+  [role="tab"][aria-selected]:focus-visible {
     border-radius: 0.25rem;
     outline: 2px solid var(--color-gray-300);
   }
@@ -193,73 +238,83 @@
 
 <script>
   customElements.define(
-    'nxjt-help',
+    "nxjt-help",
     // https://github.com/npmx-dev/npmx.dev/blob/main/packages/npmx/user-components/Tabs.astro
     class NPMXHelp extends HTMLElement {
-      tabs: HTMLAnchorElement[]
-      panels: HTMLElement[]
+      tabs: HTMLAnchorElement[];
+      panels: HTMLElement[];
 
       constructor() {
-        super()
+        super();
 
-        const tabList = this.querySelector<HTMLUListElement>('[role="tablist"]')
-        this.tabs = [...(tabList?.querySelectorAll<HTMLAnchorElement>('[role="tab"]') ?? [])]
-        this.panels = [...this.querySelectorAll<HTMLElement>(':scope > [role="tabpanel"]')]
+        const tabList =
+          this.querySelector<HTMLUListElement>('[role="tablist"]');
+        this.tabs = [
+          ...(tabList?.querySelectorAll<HTMLAnchorElement>('[role="tab"]') ??
+            []),
+        ];
+        this.panels = [
+          ...this.querySelectorAll<HTMLElement>(':scope > [role="tabpanel"]'),
+        ];
 
         for (const [index, tab] of this.tabs.entries()) {
-          tab.addEventListener('click', (event) => {
-            event.preventDefault()
+          tab.addEventListener("click", (event) => {
+            event.preventDefault();
 
-            const currentTab = tabList?.querySelector('[aria-selected]')
-            if (!(event.currentTarget instanceof HTMLAnchorElement) || event.currentTarget === currentTab) return
+            const currentTab = tabList?.querySelector("[aria-selected]");
+            if (
+              !(event.currentTarget instanceof HTMLAnchorElement) ||
+              event.currentTarget === currentTab
+            )
+              return;
 
-            this.switchTab(event.currentTarget, index)
-          })
+            this.switchTab(event.currentTarget, index);
+          });
 
-          tab.addEventListener('keydown', (event) => {
-            if (!(event.currentTarget instanceof HTMLAnchorElement)) return
+          tab.addEventListener("keydown", (event) => {
+            if (!(event.currentTarget instanceof HTMLAnchorElement)) return;
 
-            const index = this.tabs.indexOf(event.currentTarget)
+            const index = this.tabs.indexOf(event.currentTarget);
             const nextIndex =
-              event.key === 'ArrowLeft'
+              event.key === "ArrowLeft"
                 ? index - 1
-                : event.key === 'ArrowRight'
+                : event.key === "ArrowRight"
                   ? index + 1
-                  : event.key === 'Home'
+                  : event.key === "Home"
                     ? 0
-                    : event.key === 'End'
+                    : event.key === "End"
                       ? this.tabs.length - 1
-                      : null
+                      : null;
 
-            if (nextIndex === null) return
-            const nextTab = this.tabs[nextIndex]
-            if (!nextTab) return
+            if (nextIndex === null) return;
+            const nextTab = this.tabs[nextIndex];
+            if (!nextTab) return;
 
-            this.switchTab(nextTab, nextIndex)
-          })
+            this.switchTab(nextTab, nextIndex);
+          });
         }
       }
 
       switchTab(newTab: HTMLAnchorElement, index: number) {
-        if (!newTab) return
+        if (!newTab) return;
 
         for (const tab of this.tabs) {
-          tab.removeAttribute('aria-selected')
-          tab.setAttribute('tabindex', '-1')
+          tab.removeAttribute("aria-selected");
+          tab.setAttribute("tabindex", "-1");
         }
 
         for (const panel of this.panels) {
-          panel.hidden = true
+          panel.hidden = true;
         }
 
-        const newPanel = this.panels[index]
-        if (!newPanel) return
+        const newPanel = this.panels[index];
+        if (!newPanel) return;
 
-        newPanel.hidden = false
-        newTab.removeAttribute('tabindex')
-        newTab.setAttribute('aria-selected', 'true')
-        newTab.focus()
+        newPanel.hidden = false;
+        newTab.removeAttribute("tabindex");
+        newTab.setAttribute("aria-selected", "true");
+        newTab.focus();
       }
-    },
-  )
+    }
+  );
 </script>
