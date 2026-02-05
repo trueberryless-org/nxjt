@@ -1,8 +1,7 @@
-const gitHubBaseUrl = "https://github.com";
-const npmxGitHubUrl = `${gitHubBaseUrl}/npmx-dev/npmx.dev`;
-const npmxUrl = "https://npmx.dev";
-const docsUrl = "https://docs.npmx.dev";
-const searchEngineUrl = "https://duckduckgo.com/?no_redirect=0&q=! ";
+const gitHubBaseUrl = 'https://github.com'
+const npmxGitHubUrl = `${gitHubBaseUrl}/npmx-dev/npmx.dev`
+const npmxUrl = 'https://npmx.dev'
+const docsUrl = 'https://docs.npmx.dev'
 
 export const CommandDefinitions = {
   code_search: {
@@ -65,12 +64,11 @@ export function parseCommandStr(commandStr: string): Command {
     return { type: "invalid" };
   }
 
-  const documentationSearchQuery = `site:${docsUrl} ${sanitizedCommandStr}`;
   const fallbackSearchCommand: Command = makeCommand({
-    type: "search",
-    query: documentationSearchQuery,
-    redirect: `${searchEngineUrl}__NXJT_QUERY__`,
-  });
+    type: 'search',
+    query: sanitizedCommandStr,
+    redirect: `${npmxUrl}/search?q=__NXJT_QUERY__`,
+  })
 
   const match = sanitizedCommandStr.match(commandRegex);
   const { keyword, query } = match?.groups ?? {};

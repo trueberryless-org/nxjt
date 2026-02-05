@@ -16,7 +16,8 @@ test('returns the search command for unknown commands', () => {
 
   expect(result).toMatchObject({
     type: 'search',
-    query: `site:https://docs.npmx.dev ${query}`,
+    query: query,
+    redirect: `https://npmx.dev/search?q=${query}`,
   })
 })
 
@@ -46,7 +47,7 @@ test('returns the search command if a known keyword is used as a query', () => {
 
   expect(parseCommandStr(input)).toMatchObject({
     type: 'search',
-    query: `site:https://docs.npmx.dev ${input}`,
+    query: input,
   })
 })
 
@@ -58,8 +59,8 @@ test('replaces query placeholders in redirect URLs', () => {
 })
 
 test('replaces __NXJT_QUERY__ in search fallback', () => {
-  const input = 'random search'
+  const input = 'is-even'
   const result = parseCommandStr(input)
 
-  expect(result.redirect).toBe(`https://duckduckgo.com/?no_redirect=0&q=! site:https://docs.npmx.dev ${input}`)
+  expect(result.redirect).toBe(`https://npmx.dev/search?q=${input}`)
 })
