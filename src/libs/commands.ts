@@ -1,7 +1,7 @@
-const gitHubBaseUrl = 'https://github.com'
-const npmxGitHubUrl = `${gitHubBaseUrl}/npmx-dev/npmx.dev`
-const npmxUrl = 'https://npmx.dev'
-const docsUrl = 'https://docs.npmx.dev'
+const gitHubBaseUrl = "https://github.com";
+const npmxGitHubUrl = `${gitHubBaseUrl}/npmx-dev/npmx.dev`;
+const npmxUrl = "https://npmx.dev";
+const docsUrl = "https://docs.npmx.dev";
 
 export const CommandDefinitions = {
   code_search: {
@@ -65,10 +65,10 @@ export function parseCommandStr(commandStr: string): Command {
   }
 
   const fallbackSearchCommand: Command = makeCommand({
-    type: 'search',
+    type: "search",
     query: sanitizedCommandStr,
     redirect: `${npmxUrl}/search?q=__NXJT_QUERY__`,
-  })
+  });
 
   const match = sanitizedCommandStr.match(commandRegex);
   const { keyword, query } = match?.groups ?? {};
