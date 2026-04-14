@@ -15,7 +15,7 @@
 
 ## Getting Started
 
-Want to get started immediately? Visit [nxjt.netlify.app](https://nxjt.netlify.app) to get started.
+Want to get started immediately? Visit [nxjt.trueberryless.org](https://nxjt.trueberryless.org) to get started.
 
 ## License
 
