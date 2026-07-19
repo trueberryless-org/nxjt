@@ -11,7 +11,7 @@
     "firefox",
     "alfred"
   ],
-  "homepage": "https://nxjt.trueberryless.org",
+  "homepage": "https://nxjt.netlify.app",
   "bugs": {
     "url": "https://github.com/trueberryless-org/nxjt/issues"
   },
@@ -20,7 +20,7 @@
     "url": "https://github.com/trueberryless-org/nxjt.git"
   },
   "license": "MIT",
-  "author": "trueberryless <trueberryless@gmail.com> (https://trueberryless.org)",
+  "author": "trueberryless <trueberryless@gmail.com> (https://felixs.dev)",
   "type": "module",
   "scripts": {
     "astro": "astro",
