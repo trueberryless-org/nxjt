@@ -83,7 +83,7 @@ export function parseCommandStr(commandStr: string): Command {
     return fallbackSearchCommand;
   }
 
-  const [type, { keyword: _, ...definition }] = commandDefinition;
+  const [type, { keyword: _keyword, ...definition }] = commandDefinition;
 
   return makeCommand({
     ...definition,
@@ -105,7 +105,7 @@ function makeCommand(command: Command): Command {
   if (command.redirect) {
     command.redirect = command.redirect.replaceAll(
       "__NXJT_QUERY__",
-      command.query ?? ""
+      encodeURIComponent(command.query ?? "")
     );
   }
   return command;

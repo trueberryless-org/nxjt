@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { CommandDefinitions, parseCommandStr } from '../libs/commands'
+import { CommandDefinitions, parseCommandStr } from '../../src/libs/commands'
 
 type CommandType = keyof typeof CommandDefinitions
 
@@ -63,4 +63,10 @@ test('replaces __NXJT_QUERY__ in search fallback', () => {
   const result = parseCommandStr(input)
 
   expect(result.redirect).toBe(`https://npmx.dev/search?q=${input}`)
+})
+
+test('encodes special characters in the query of redirect URLs', () => {
+  const result = parseCommandStr('is-even&type=issue#top')
+
+  expect(result.redirect).toBe('https://npmx.dev/search?q=is-even%26type%3Dissue%23top')
 })
