@@ -5,19 +5,14 @@ import { CommandDefinitions } from "../libs/commands";
 <nxjt-commands>
   <h2>Available commands</h2>
   <ul>
-    {
-      Object.values(CommandDefinitions).map((command) => (
-        <li>
-          <button
-            aria-label={command.description}
-            data-example={command.example}
-          >
-            <code aria-hidden="true">{command.keyword}</code>
-          </button>
-          <span aria-hidden="true">{command.description}</span>
-        </li>
-      ))
-    }
+    {Object.values(CommandDefinitions).map((command) => (
+      <li>
+        <button aria-label={command.description} data-example={command.example}>
+          <code aria-hidden="true">{command.keyword}</code>
+        </button>
+        <span aria-hidden="true">{command.description}</span>
+      </li>
+    ))}
   </ul>
   <p>
     Using no command or an unknown command will search for the package directly
